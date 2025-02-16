@@ -34,3 +34,19 @@ myst_enable_extensions = [
 ]
 
 nbsphinx_execute = 'never'
+nbsphinx_allow_errors = True
+nbsphinx_kernel_name = 'python3'
+
+# Add any paths that contain templates here, relative to this directory.
+templates_path = ['_templates']
+
+# List of patterns, relative to source directory, that match files and
+# directories to ignore when looking for source files.
+exclude_patterns = ['_build', '**.ipynb_checkpoints']
+
+# The suffix(es) of source filenames.
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+    '.ipynb': 'nbsphinx',
+}
