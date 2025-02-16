@@ -9,7 +9,10 @@ Welcome to Time Series RAG's documentation!
    modules/models
    modules/rag
    modules/api
+   modules/analytics
    examples/usage
+   examples/pattern_recognition
+   examples/anomaly_detection
 
 Time Series RAG is a powerful system for time series similarity search and retrieval augmented generation.
 
