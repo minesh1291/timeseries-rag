@@ -3,8 +3,8 @@ import sys
 sys.path.insert(0, os.path.abspath('../../..'))
 
 project = 'Time Series RAG'
-copyright = '2024, OpenHands'
-author = 'OpenHands'
+copyright = '2024, Minesh A. Jethva'
+author = 'Minesh A. Jethva'
 
 extensions = [
     'sphinx.ext.autodoc',

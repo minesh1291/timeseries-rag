@@ -102,7 +102,7 @@ If you use this project in your research, please cite:
 
 ```bibtex
 @software{timeseries_rag2024,
-  author = {OpenHands},
+  author = {Jethva, Minesh A.},
   title = {Time Series RAG},
   year = {2024},
   publisher = {GitHub},

@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="timeseries_rag",
     version="0.1.0",
-    author="OpenHands",
+    author="Minesh A. Jethva",
     author_email="minesh.1291@gmail.com",
     description="Time series similarity search and retrieval augmented generation",
     long_description=long_description,
