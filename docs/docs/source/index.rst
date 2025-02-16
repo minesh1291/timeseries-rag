@@ -6,12 +6,11 @@ Welcome to Time Series RAG's documentation!
    :caption: Contents:
 
    readme
-   examples/quickstart
    modules/models
    modules/rag
    modules/api
    modules/analytics
-   examples/usage
+   examples/quickstart
    examples/pattern_recognition
    examples/anomaly_detection
 
