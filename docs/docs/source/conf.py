@@ -16,6 +16,17 @@ extensions = [
     'myst_parser',
     'nbsphinx',
     'sphinx_design',
+    'IPython.sphinxext.ipython_console_highlighting',
+    'IPython.sphinxext.ipython_directive',
+]
+
+# nbsphinx configuration
+nbsphinx_input_prompt = 'In [%s]:'
+nbsphinx_output_prompt = 'Out[%s]:'
+nbsphinx_timeout = 60
+nbsphinx_execute_arguments = [
+    "--InlineBackend.figure_formats={'svg', 'pdf'}",
+    "--InlineBackend.rc={'figure.dpi': 96}",
 ]
 
 templates_path = ['_templates']
