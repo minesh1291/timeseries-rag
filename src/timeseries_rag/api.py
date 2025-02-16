@@ -27,6 +27,8 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.openapi.docs import get_swagger_ui_html
+from fastapi.openapi.utils import get_openapi
 import uvicorn
 import numpy as np
 import pandas as pd
@@ -41,8 +43,47 @@ from .rag import TimeSeriesRAG, TimeSeriesDocument
 app = FastAPI(
     title="Time Series RAG",
     description="Time series similarity search and retrieval augmented generation",
-    version="0.1.0"
+    version="0.1.0",
+    docs_url=None,  # Disable default docs
+    redoc_url=None  # Disable default redoc
 )
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    
+    openapi_schema = get_openapi(
+        title="Time Series RAG API",
+        version="1.0.0",
+        description="Time Series Retrieval Augmented Generation API",
+        routes=app.routes,
+    )
+    
+    # Add API key security scheme
+    openapi_schema["components"] = {
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-API-Key"
+            }
+        }
+    }
+    
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+app.openapi = custom_openapi
+
+@app.get("/docs", include_in_schema=False)
+async def custom_swagger_ui_html():
+    """Serve custom Swagger UI."""
+    return get_swagger_ui_html(
+        openapi_url="/openapi.json",
+        title="Time Series RAG API Documentation",
+        swagger_js_url="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui-bundle.js",
+        swagger_css_url="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.9.0/swagger-ui.css",
+    )
 
 # Add CORS middleware
 app.add_middleware(
@@ -273,12 +314,20 @@ def main():
     
     This function is the entry point for running the web application. It configures
     uvicorn with the appropriate host and port settings.
+    
+    For Azure App Service:
+    - Uses port from environment variable if available
+    - Disables reload in production
     """
+    import os
+    port = int(os.getenv("PORT", "8000"))
+    reload = os.getenv("ENVIRONMENT", "production").lower() != "production"
+    
     uvicorn.run(
         "timeseries_rag.api:app",
         host="0.0.0.0",
-        port=50758,
-        reload=True
+        port=port,
+        reload=reload
     )
 
 if __name__ == "__main__":
