@@ -58,6 +58,5 @@ exclude_patterns = ['_build', '**.ipynb_checkpoints']
 # The suffix(es) of source filenames.
 source_suffix = {
     '.rst': 'restructuredtext',
-    '.md': 'markdown',
-    '.ipynb': 'nbsphinx',
+    '.md': 'markdown'
 }
