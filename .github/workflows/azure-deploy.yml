@@ -7,7 +7,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: ts-rag
-  PYTHON_VERSION: '3.10'
+  PYTHON_VERSION: '3.12'
 
 jobs:
   build-and-deploy:
