@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-numpy
-pandas
-faiss-cpu
-plotly
-python-multipart
-scikit-learn
-scipy
